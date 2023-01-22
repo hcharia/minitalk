@@ -3,77 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:36 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/19 19:06:08 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/22 17:26:31 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static int i;
-
-int pow (int num, int pow)
+int ft_pow (int num, int ft_pow)
 {
     int result;
 
     result = 1;
-    if ((num == 0 && pow == 0) || pow < 0)
-        return (0);
-    if (pow == 0)
+    if ((num == 0 && ft_pow == 0) || ft_pow < 0)
+        return (-1);
+    if (ft_pow == 0)
         return (1);
-    while (pow >= 1)
+    while (ft_pow >= 1)
     {
         result *= num;
-        pow --;
+        ft_pow --;
     }
     return (result); 
 }
 
 int sum (int *s)
 {
-    int i;
+    int j;
     int result;
 
     result = 0;
-    i = 7;
-    while (i >= 0)
+    j = 7;
+    while (j >= 0)
     {
-        result += pow(2, i);
+        result += ft_pow(2, j);
+		j--;
     }
     return (result);
 }
 
-void handlefuction(int sig)
+void handlefuction(int sig, siginfo_t *i, void *p)
 {
-    static int i;
     static int s[8];
-
+	int	j;
     
+	j = 7;
     if (sig == SIGUSR1)
-        s[i] = 1;
+        s[j] = 0;
     else if (sig == SIGUSR2)
-        s[i] = 0;
-    i --;
-    if (i == -1)
+        s[j] = 1;
+    j --;
+    if (j == -1)
     {
         
-        write(1, ,1);
-        i = 7;
+        ft_putchar_fd(sum(s), 0);
+        j = 7;
     }
 }
 
-
 int main(void)
 {
-    i = 7;
-    struct sigaction sa;
-
-    sa.sa_handler = &handlefuction;
-    while (1)
-    {
-        sigaction(SIGUSR1, &sa, NULL);
-        sigaction(SIGUSR2, &sa, NULL);
-    }
+	struct sigaction sa;
+	
+    // sa.sa_handler = &handlefuction;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_sigaction = &handlefuction;
+	sa.sa_flags = 0;
+	int s[] = {1, 0, 0, 0, 0, 0, 0, 0};
+	printf ("%d\n", getpid());
+	sigaction(SIGUSR1, &sa, NULL);
+    sigaction(SIGUSR2, &sa, NULL);
+	while (1)
+		pause();
+	return (0);
 }

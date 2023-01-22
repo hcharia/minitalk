@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:28 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/19 18:04:13 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/22 17:25:27 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,17 @@ void    sendmsg (char *s, int pid)
         while (j-- > 0)
         {
             if (save % 2 == 0)
-                kill(pid, SIGUSR1);
+			{
+				kill(pid, SIGUSR1);
+				usleep(100);
+			}
+                
             else
-                kill(pid, SIGUSR2);
-            save /= 2;
+			{
+				kill(pid, SIGUSR2);
+            	usleep(100);
+			}
+                save /= 2;
         }
         i++;
     }
@@ -45,6 +52,6 @@ int main(int c, char **v)
     if (c != 3)
         return (0);
     pid = ft_atoi(v[1]);
-    msg = ft_strdup(v[2]);
-    sendmsg(pid, msg);
+	msg = ft_strdup(v[2]);
+    sendmsg(msg, pid);
 }

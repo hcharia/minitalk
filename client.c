@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:28 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/22 17:25:27 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/23 14:50:47 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,34 @@
 
 void    sendmsg (char *s, int pid)
 {
-    int i;
-    int j;
-    int save;
+	int	i;
+	int	j;
 
-    j = 8;
-    i = 0;
-    
-    while (s[i])
-    {
-        save = s[i];
-        while (j-- > 0)
-        {
-            if (save % 2 == 0)
-			{
-				kill(pid, SIGUSR1);
-				usleep(100);
-			}
-                
-            else
-			{
-				kill(pid, SIGUSR2);
-            	usleep(100);
-			}
-                save /= 2;
-        }
-        i++;
-    }
+	i = 0;
+	while (s[i])
+	{
+		j = 7;
+		while (j >= 0)
+		{
+			if (s[i] >> j & 1)
+				kill (pid, SIGUSR1);
+			else
+				kill (pid, SIGUSR2);
+			usleep (100);
+			j--;
+		}
+		i++;
+	}
+	
 }
 
 int main(int c, char **v)
 {
-    char    *msg;
     int     pid;
     int     i;
     
     if (c != 3)
         return (0);
     pid = ft_atoi(v[1]);
-	msg = ft_strdup(v[2]);
-    sendmsg(msg, pid);
+	sendmsg(v[2], pid);
 }

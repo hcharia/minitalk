@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 10:07:36 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/25 15:07:28 by hcharia          ###   ########.fr       */
+/*   Created: 2023/01/25 15:32:52 by hcharia           #+#    #+#             */
+/*   Updated: 2023/01/25 15:53:59 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int sumbin (int *a)
 	i = 0;
 	while (i < 8)
 	{
-		result += a[i]*power(2, i);
+		result += a[i] * power(2, i);
 		i++;
 	}
 	return (result);
@@ -77,11 +77,13 @@ int main(void)
     sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		if(array.i == -1)
+		if(array.i == -1 && sumbin(array.s) != 0)
 		{
 			ft_putchar_fd(sumbin(array.s), 1);
 			array.i = 7;
 		}
+		if (array.i == -1 && sumbin(array.s) == 0)
+			write (1 , "\nwsal😁\n", 10);
 		pause();
 	}
 	return (0);

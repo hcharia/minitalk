@@ -6,13 +6,13 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:32:52 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/25 15:53:59 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:33:42 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int power(int a, int e)
+int	power(int a, int e)
 {
 	int	result;
 
@@ -29,9 +29,9 @@ int power(int a, int e)
 	return (result);
 }
 
-int sumbin (int *a)
+int	sumbin(int *a)
 {
-	int i;
+	int	i;
 	int	result;
 
 	result = 0;
@@ -44,28 +44,54 @@ int sumbin (int *a)
 	return (result);
 }
 
-void handlefuction(int sig, siginfo_t *a, void *p)
+void	print(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		write (1, &s[i], 1);
+		i++;
+	}
+	s[i] = 0;
+}
+
+void	handlefuction(int sig, siginfo_t *a, void *p)
 {
 	if (a->si_pid != array.pidclient)
 	{
 		array.i = 7;
+		array.j = 0;
 		array.pidclient = a->si_pid;
 	}
 	if (array.i > -1)
 	{
-	if (sig == SIGUSR1)
-		array.s[array.i] = 1;	
-	else if (sig == SIGUSR2)
-		array.s[array.i] = 0;
-	array.i--;
+		if (sig == SIGUSR1)
+			array.s[array.i--] = 1;
+		else if (sig == SIGUSR2)
+			array.s[array.i--] = 0;
+	}
+	if (array.i == -1 && sumbin(array.s) != 0 \
+		&& array.j < 4 && !ft_isascii(sumbin(array.s)))
+	{
+		array.v[array.j++] = sumbin(array.s);
+		array.i = 7;
+	}
+	else if (array.i == -1 && sumbin(array.s) != 0 \
+		&& ft_isascii(sumbin(array.s)))
+	{
+		ft_putchar_fd(sumbin(array.s), 1);
+		array.i = 7;
 	}
 }
 
-int main(void)
+int	main(void)
 {
-	struct sigaction sa;
-	int k;
+	struct sigaction	sa;
+	int					k;
 
+	array.v[4] = '\0';
 	k = 0;
 	array.i = 7;
 	sigemptyset(&sa.sa_mask);
@@ -74,16 +100,16 @@ int main(void)
 	ft_putstr_fd (ft_itoa(getpid()), 0);
 	ft_putchar_fd('\n', 0);
 	sigaction(SIGUSR1, &sa, NULL);
-    sigaction(SIGUSR2, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		if(array.i == -1 && sumbin(array.s) != 0)
+		if (array.j == 4)
 		{
-			ft_putchar_fd(sumbin(array.s), 1);
-			array.i = 7;
+			array.j = 0;
+			print (array.v);
 		}
-		if (array.i == -1 && sumbin(array.s) == 0)
-			write (1 , "\nwsal😁\n", 10);
+		else if (array.i == -1 && sumbin(array.s) == 0)
+			write(1, "\nwsal😁\n", 10);
 		pause();
 	}
 	return (0);

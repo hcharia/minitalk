@@ -6,13 +6,13 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:36 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/25 15:07:28 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:29:32 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int power(int a, int e)
+int	power(int a, int e)
 {
 	int	result;
 
@@ -29,22 +29,22 @@ int power(int a, int e)
 	return (result);
 }
 
-int sumbin (int *a)
+int	sumbin(int *a)
 {
-	int i;
+	int	i;
 	int	result;
 
 	result = 0;
 	i = 0;
 	while (i < 8)
 	{
-		result += a[i]*power(2, i);
+		result += a[i] * power(2, i);
 		i++;
 	}
 	return (result);
 }
 
-void handlefuction(int sig, siginfo_t *a, void *p)
+void	handlefuction(int sig, siginfo_t *a, void *p)
 {
 	if (a->si_pid != array.pidclient)
 	{
@@ -53,18 +53,18 @@ void handlefuction(int sig, siginfo_t *a, void *p)
 	}
 	if (array.i > -1)
 	{
-	if (sig == SIGUSR1)
-		array.s[array.i] = 1;	
-	else if (sig == SIGUSR2)
-		array.s[array.i] = 0;
-	array.i--;
+		if (sig == SIGUSR1)
+			array.s[array.i] = 1;
+		else if (sig == SIGUSR2)
+			array.s[array.i] = 0;
+		array.i--;
 	}
 }
 
-int main(void)
+int	main(void)
 {
-	struct sigaction sa;
-	int k;
+	struct sigaction	sa;
+	int					k;
 
 	k = 0;
 	array.i = 7;
@@ -74,10 +74,10 @@ int main(void)
 	ft_putstr_fd (ft_itoa(getpid()), 0);
 	ft_putchar_fd('\n', 0);
 	sigaction(SIGUSR1, &sa, NULL);
-    sigaction(SIGUSR2, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		if(array.i == -1)
+		if (array.i == -1)
 		{
 			ft_putchar_fd(sumbin(array.s), 1);
 			array.i = 7;

@@ -6,13 +6,13 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 11:58:45 by hcharia           #+#    #+#             */
-/*   Updated: 2022/12/27 14:49:39 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:27:15 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	ft_lstiter(stack *lst, void (*f)(void *))
+void	ft_lstiter(t_stack *lst, void (*f)(void *))
 {
 	while (lst != 0)
 	{

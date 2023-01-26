@@ -6,15 +6,15 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 11:41:43 by hcharia           #+#    #+#             */
-/*   Updated: 2022/12/27 14:49:39 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:27:15 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	ft_lstclear(stack **lst, void (*del)(void *))
+void	ft_lstclear(t_stack **lst, void (*del)(void *))
 {
-	stack	*save;
+	t_stack	*save;
 
 	save = 0;
 	if (!lst || !del)

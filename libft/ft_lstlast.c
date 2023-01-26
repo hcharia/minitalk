@@ -6,13 +6,13 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:29:27 by hcharia           #+#    #+#             */
-/*   Updated: 2022/12/27 14:49:39 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:27:15 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-stack	*ft_lstlast(stack *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
 	while (lst != 0)
 	{

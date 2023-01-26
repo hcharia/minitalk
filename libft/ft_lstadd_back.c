@@ -6,15 +6,15 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:37:54 by hcharia           #+#    #+#             */
-/*   Updated: 2022/12/27 14:49:39 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:27:15 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-void	ft_lstadd_back(stack **lst, stack *new)
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!lst || !new)
 		return ;

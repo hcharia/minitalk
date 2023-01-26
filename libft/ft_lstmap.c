@@ -6,16 +6,16 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 12:35:39 by hcharia           #+#    #+#             */
-/*   Updated: 2022/12/27 14:49:39 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:27:15 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-stack	*ft_lstmap(stack *lst, void *(*f)(void *), void (*del)(void *))
+t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *))
 {
-	stack	*lst2;
-	stack	*start;
+	t_stack	*lst2;
+	t_stack	*start;
 
 	if (!lst || !f || !del)
 		return (NULL);

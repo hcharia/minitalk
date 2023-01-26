@@ -6,13 +6,13 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:28 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/23 14:50:47 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/26 16:19:38 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void    sendmsg (char *s, int pid)
+void	sendmsg(char *s, int pid)
 {
 	int	i;
 	int	j;
@@ -32,16 +32,15 @@ void    sendmsg (char *s, int pid)
 		}
 		i++;
 	}
-	
 }
 
-int main(int c, char **v)
+int	main(int c, char **v)
 {
-    int     pid;
-    int     i;
-    
-    if (c != 3)
-        return (0);
-    pid = ft_atoi(v[1]);
+	int	pid;
+	int	i;
+
+	if (c != 3)
+		return (0);
+	pid = ft_atoi(v[1]);
 	sendmsg(v[2], pid);
 }

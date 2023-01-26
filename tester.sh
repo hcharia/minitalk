@@ -6,7 +6,7 @@ for i in {1..100000}
 do
 	if [ $PROCCESS -eq 0 ]
 	then
-		./client 26150 "😁"
+		./client 17615 "hello 🙃"
 	else
 		kill -1 $(top -l 1 | grep client | awk '{print $1}')
 	fi

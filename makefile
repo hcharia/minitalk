@@ -6,14 +6,14 @@
 #    By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 10:33:14 by hcharia           #+#    #+#              #
-#    Updated: 2023/01/26 19:58:01 by hcharia          ###   ########.fr        #
+#    Updated: 2023/01/27 17:06:18 by hcharia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME1=server
 NAME2=client
 NAME3=server_bonus
-NAME3=client_bonus
+NAME4=client_bonus
 
 CC = CC
 CFLAGS = -Werror -Wextra -Wall
@@ -22,7 +22,8 @@ libft = $(libftdir)libft.a
 
 CFILES = client.c\
 server.c
-CBONUS=server_bonus.c
+CBONUS=server_bonus.c\
+client_bonus.c
 
 OBJECTS=$(CFILES:.c=.o)
 BNSOBJECTS=$(CBONUS:.c=.o)
@@ -47,7 +48,7 @@ bonus:${BNSOBJECTS}
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf ${OBJECTS}${BNSOBJECTS}
+	rm -rf ${OBJECTS} ${BNSOBJECTS}
 
 fclean: clean
 	rm -rf ${NAME1} ${NAME2} ${NAME3} ${NAME4}

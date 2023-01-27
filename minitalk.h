@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:14:43 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/26 16:26:18 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/27 17:14:40 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <sys/types.h>
-# include <stdio.h>
 # include "libft/libft.h"
 
 static struct s_list1

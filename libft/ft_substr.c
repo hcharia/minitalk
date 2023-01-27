@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcharia <hcharia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 08:58:57 by hcharia           #+#    #+#             */
-/*   Updated: 2022/10/17 16:24:34 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/27 17:15:00 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	s1[i] = 0;
 	return (s1);
 }
-//#include<stdio.h>
-//int main()
-//{
-//	char *s = "all of this !";
-// 	size_t	size = ft_strlen(s);
-// 	char *ret = ft_substr(s, 0, size);
-//	 printf("%s", ret);
-//}

@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:32:52 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/26 20:11:45 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/27 16:30:19 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print(char *s)
 	s[i] = 0;
 }
 
-void	handlefuction(int sig, siginfo_t *a, void *p)
+void	handlefuction(int sig, siginfo_t *a)
 {
 	if (a->si_pid != array.pidclient)
 	{
@@ -95,7 +95,7 @@ int	main(void)
 	k = 0;
 	array.i = 7;
 	sigemptyset(&sa.sa_mask);
-	sa.sa_sigaction = &handlefuction;
+	sa.sa_sigaction = (void *)handlefuction;
 	sa.sa_flags = 0;
 	ft_putstr_fd (ft_itoa(getpid()), 0);
 	ft_putchar_fd('\n', 0);

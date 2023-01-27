@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 10:07:28 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/26 19:48:29 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/27 16:33:02 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int	main(int c, char **v)
 		return (0);
 	pid = ft_atoi(v[1]);
 	sendmsg(v[2], pid);
+	return (0);
 }

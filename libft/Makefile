@@ -1,5 +1,5 @@
 NAME=libft.a
-CC=gcc
+CC=CC
 CFLAGS=-Werror -Wextra -Wall
 CFILES= ft_atoi.c\
 ft_bzero.c\
@@ -48,10 +48,10 @@ BNSOBJECTS=$(CBONUS:.c=.o)
 all : ${NAME}
  
 
-${NAME}:${OBJECTS} libft.h
+${NAME}:${OBJECTS}
 	ar -rsc ${NAME} ${OBJECTS}
 
-bonus:${BNSOBJECTS} libft.h
+bonus:${BNSOBJECTS}
 	ar -rsc ${NAME} ${BNSOBJECTS}
 
 %.o:%.c libft.h
@@ -65,4 +65,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean bonus re

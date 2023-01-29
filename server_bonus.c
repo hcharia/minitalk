@@ -6,7 +6,7 @@
 /*   By: hcharia < hcharia@student.1337.ma>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 15:32:52 by hcharia           #+#    #+#             */
-/*   Updated: 2023/01/27 16:30:19 by hcharia          ###   ########.fr       */
+/*   Updated: 2023/01/29 16:05:03 by hcharia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	power(int a, int e)
 	int	result;
 
 	result = 1;
-	if (a < 0 || (a == 0 && e == 0) || e < 0 || (a < 0 && e < 0))
+	if (a < 0 || (a == 0 && e == 0) || e < 0)
 		return (0);
 	if (e == 0)
 		return (1);
@@ -72,16 +72,9 @@ void	handlefuction(int sig, siginfo_t *a)
 		else if (sig == SIGUSR2)
 			array.s[array.i--] = 0;
 	}
-	if (array.i == -1 && sumbin(array.s) != 0 \
-		&& array.j < 4 && !ft_isascii(sumbin(array.s)))
+	if (array.i == -1 && sumbin(array.s) != 0 && array.j <= 4)
 	{
 		array.v[array.j++] = sumbin(array.s);
-		array.i = 7;
-	}
-	else if (array.i == -1 && sumbin(array.s) != 0 \
-		&& ft_isascii(sumbin(array.s)))
-	{
-		ft_putchar_fd(sumbin(array.s), 1);
 		array.i = 7;
 	}
 }
@@ -89,10 +82,7 @@ void	handlefuction(int sig, siginfo_t *a)
 int	main(void)
 {
 	struct sigaction	sa;
-	int					k;
 
-	array.v[4] = '\0';
-	k = 0;
 	array.i = 7;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = (void *)handlefuction;
@@ -103,13 +93,14 @@ int	main(void)
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		if (array.j == 4)
+		if (array.j == 4 || (array.j != 0 && sumbin(array.s) == 0))
 		{
+			array.v[array.j] = 0;
 			array.j = 0;
 			print (array.v);
 		}
-		else if (array.i == -1 && sumbin(array.s) == 0)
-			write(1, "\nwsal😁\n", 10);
+		if (array.i == -1 && sumbin(array.s) == 0)
+			kill(array.pidclient, SIGUSR1);
 		pause();
 	}
 	return (0);
